@@ -64,6 +64,34 @@ int calculo(int diaEntrega, int mesEntrega, int diaAtual, int mesAtual){
 
 // - - - - - -
 
+int urgenciaDeterminador(int qtDias, int dificul){
+
+
+if(qtDias <= 5){
+
+        if(dificul >= 7){
+            printf("Urgencia1");
+        } else if(dificul >= 4){
+            printf("cuidado2");
+        } else {
+            printf("Safe3");
+        }
+    }
+
+    else if(qtDias <= 10){
+
+        if(dificul >= 7){
+            printf("cuidado1");
+        } else {
+            printf("Safe2");
+        }
+    }
+
+    else {
+            printf("Safe4");
+    }
+}
+
 
 int welcomeStart(){
 	
@@ -147,6 +175,8 @@ int main() {
         printf("\tPeso: %d\n", atividades[i].peso);
         printf("\tDificuldade: %d\n \n", atividades[i].dificuldade);
         printf("\n");
+        
+        urgenciaDeterminador(atividades[i].data.dia, atividades[i].dificuldade);
         
         if (atividades[i].dificuldade >= 7) {
             printf("\tClassifica��o: Dificil\n\n");
