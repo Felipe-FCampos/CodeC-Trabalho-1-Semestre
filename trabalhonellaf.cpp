@@ -4,17 +4,6 @@
 #include <locale.h>
 #include <cstdio>
 
-
-int welcomeStart(){
-	
-	
-	
-	printf("\n \t Bem-vindo ao organizador de tarefas \n");
-	
-	
-
-}
-
 // barra de carregamento //
 
 int loadingBar(){
@@ -32,7 +21,7 @@ int loadingBar(){
 	sleep(2);
 }
 
-// Variaveis para armazenamento das informações
+// Variaveis para armazenamento das informaï¿½ï¿½es
 
 typedef struct {
     int dia;
@@ -46,7 +35,7 @@ typedef struct {
     char nome[50];
 } Atividade;
 
-// Função para o calculo do mes
+// Funï¿½ï¿½o para o calculo do mes
 
 int calculo(int diaEntrega, int mesEntrega, int diaAtual, int mesAtual){
     int calculo=0, a=0;
@@ -73,7 +62,19 @@ int calculo(int diaEntrega, int mesEntrega, int diaAtual, int mesAtual){
 	return calculo;
 }
 
-// Função principal: pega informações principais de dias
+// - - - - - -
+
+
+int welcomeStart(){
+	
+	printf("\n Bem-vindo ao organizador de tarefas \n");
+    printf("\n \tAperte Enter para iniciar!!!!\n");
+    getchar(); // Wait for Enter key press
+    loadingBar();
+
+}
+
+// Funï¿½ï¿½o principal: pega informaï¿½ï¿½es principais de dias
 
 int main() {
     int numAtividades, diaEntrega, mesEntrega, diaAtual, mesAtual;
@@ -84,38 +85,38 @@ int main() {
 	
 	loadingBar();
 	
-    printf("Digite o número de atividades: ");
+    printf("\n\tDigite o nï¿½mero de atividades: ");
     scanf("%d", &numAtividades);
     
-    printf("Digite o dia atual: ");
+    printf("\tDigite o dia atual: ");
     scanf("%d",&diaAtual);
-    printf("Digite o mês atual: ");
+    printf("\tDigite o mï¿½s atual: ");
     scanf("%d", &mesAtual);
 
     Atividade atividades[numAtividades];
 
     for (int i = 0; i < numAtividades; i++) {
-        printf("\nAtividade %d:\n", i + 1);
+        printf("\n\tAtividade %d:\n", i + 1);
 
-        printf("Digite o nome da atividade: \n");
+        printf("\tDigite o nome da atividade: \n");
         scanf(" %[^\n]s", atividades[i].nome);
 		
-		printf("Digite o dia de entrega: ");
+		printf("\tDigite o dia de entrega: ");
    		scanf("%d", &diaEntrega);
     
-    	printf("Digite um mês: ");
+    	printf("\tDigite um mï¿½s: ");
    		scanf("%d", &mesEntrega);
    		
-   		// Puxando a função cálculo
+   		// Puxando a funï¿½ï¿½o cï¿½lculo
    		
    		atividades[i].data.dia=calculo(diaEntrega, mesEntrega, diaAtual, mesAtual);
 		
 		//  - - - - - - - - - - - - - - - 
 	
-        printf("Digite o peso (1-10): \n");
+        printf("\tDigite o peso (1-10): \n");
         scanf("%d", &atividades[i].peso);
 
-        printf("Digite a dificuldade (1-10): \n");
+        printf("\tDigite a dificuldade (1-10): \n");
         scanf("%d", &atividades[i].dificuldade);
     }
 
@@ -124,7 +125,7 @@ int main() {
             int prioridade_i = atividades[i].peso * atividades[i].dificuldade;
             int prioridade_j = atividades[j].peso * atividades[j].dificuldade;
             if (prioridade_i < prioridade_j) {
-                // Trocar as posições das atividades
+                // Trocar as posiï¿½ï¿½es das atividades
                 Atividade temp = atividades[i];
                 atividades[i] = atividades[j];
                 atividades[j] = temp; 
@@ -136,23 +137,23 @@ int main() {
 	printf("\n\n \tAperte Enter para organizar!!!!\n");
     getchar(); // Wait for Enter key press
     getchar(); // Wait for Enter key press
-	// 	Quando o código acabar, gerar arquivo txt das atividades organizadas
+	// 	Quando o cï¿½digo acabar, gerar arquivo txt das atividades organizadas
 
-    printf("\n \nAtividades organizadas: \n \n");
+    printf("\n \n\tAtividades organizadas: \n \n");
     for (int i = 0; i < numAtividades; i++) {
         printf("Atividade %d:\n \n", i + 1);
-        printf("Nome: %s\n", atividades[i].nome);
-        printf("Dias faltando: %d\n", atividades[i].data.dia);
-        printf("Peso: %d\n", atividades[i].peso);
-        printf("Dificuldade: %d\n \n", atividades[i].dificuldade);
+        printf("\tNome: %s\n", atividades[i].nome);
+        printf("\tDias faltando: %d\n", atividades[i].data.dia);
+        printf("\tPeso: %d\n", atividades[i].peso);
+        printf("\tDificuldade: %d\n \n", atividades[i].dificuldade);
         printf("\n");
         
         if (atividades[i].dificuldade >= 7) {
-            printf("Classificação: Dificil\n\n");
+            printf("\tClassificaï¿½ï¿½o: Dificil\n\n");
         } else if (atividades[i].dificuldade >= 4) {
-            printf("Classificação: Medio\n\n");
+            printf("\tClassificaï¿½ï¿½o: Medio\n\n");
         } else {
-            printf("Classificação: Facil\n\n");
+            printf("\tClassificaï¿½ï¿½o: Facil\n\n");
         }
     }
 }
