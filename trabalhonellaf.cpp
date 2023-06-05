@@ -21,7 +21,7 @@ int loadingBar(){
 	sleep(2);
 }
 
-// Variaveis para armazenamento das informaï¿½ï¿½es
+// Variaveis para armazenamento das informa??es
 
 typedef struct {
     int dia;
@@ -35,7 +35,7 @@ typedef struct {
     char nome[50];
 } Atividade;
 
-// Funï¿½ï¿½o para o calculo do mes
+// Fun??o para o calculo do mes
 
 int calculo(int diaEntrega, int mesEntrega, int diaAtual, int mesAtual){
     int calculo=0, a=0;
@@ -70,25 +70,25 @@ int urgenciaDeterminador(int qtDias, int dificul){
 if(qtDias <= 5){
 
         if(dificul >= 7){
-            printf("Urgencia1");
+            printf("Urgencia");
         } else if(dificul >= 4){
-            printf("cuidado2");
+            printf("cuidado");
         } else {
-            printf("Safe3");
+            printf("Safe");
         }
     }
 
     else if(qtDias <= 10){
 
         if(dificul >= 7){
-            printf("cuidado1");
+            printf("Cuidado");
         } else {
-            printf("Safe2");
+            printf("Safe");
         }
     }
 
     else {
-            printf("Safe4");
+            printf("Safe");
     }
 }
 
@@ -102,7 +102,7 @@ int welcomeStart(){
 
 }
 
-// Funï¿½ï¿½o principal: pega informaï¿½ï¿½es principais de dias
+// Fun??o principal: pega informa??es principais de dias
 
 int main() {
     int numAtividades, diaEntrega, mesEntrega, diaAtual, mesAtual;
@@ -113,38 +113,38 @@ int main() {
 	
 	loadingBar();
 	
-    printf("\n\tDigite o nï¿½mero de atividades: ");
+    printf("\n\tDigite o número de atividades: ");
     scanf("%d", &numAtividades);
     
     printf("\tDigite o dia atual: ");
     scanf("%d",&diaAtual);
-    printf("\tDigite o mï¿½s atual: ");
+    printf("\tDigite o mês atual: ");
     scanf("%d", &mesAtual);
 
     Atividade atividades[numAtividades];
 
     for (int i = 0; i < numAtividades; i++) {
-        printf("\n\tAtividade %d:\n", i + 1);
+        printf("\n\tAtividade %d: ", i + 1);
 
-        printf("\tDigite o nome da atividade: \n");
+        printf("\tDigite o nome da atividade: ");
         scanf(" %[^\n]s", atividades[i].nome);
 		
 		printf("\tDigite o dia de entrega: ");
    		scanf("%d", &diaEntrega);
     
-    	printf("\tDigite um mï¿½s: ");
+    	printf("\tDigite um mês: ");
    		scanf("%d", &mesEntrega);
    		
-   		// Puxando a funï¿½ï¿½o cï¿½lculo
+   		// Puxando a fun??o c?lculo
    		
    		atividades[i].data.dia=calculo(diaEntrega, mesEntrega, diaAtual, mesAtual);
 		
 		//  - - - - - - - - - - - - - - - 
 	
-        printf("\tDigite o peso (1-10): \n");
+        printf("\tDigite o peso (1-10): ");
         scanf("%d", &atividades[i].peso);
 
-        printf("\tDigite a dificuldade (1-10): \n");
+        printf("\tDigite a dificuldade (1-10): ");
         scanf("%d", &atividades[i].dificuldade);
     }
 
@@ -153,7 +153,7 @@ int main() {
             int prioridade_i = atividades[i].peso * atividades[i].dificuldade;
             int prioridade_j = atividades[j].peso * atividades[j].dificuldade;
             if (prioridade_i < prioridade_j) {
-                // Trocar as posiï¿½ï¿½es das atividades
+                // Trocar as posi??es das atividades
                 Atividade temp = atividades[i];
                 atividades[i] = atividades[j];
                 atividades[j] = temp; 
@@ -165,9 +165,9 @@ int main() {
 	printf("\n\n \tAperte Enter para organizar!!!!\n");
     getchar(); // Wait for Enter key press
     getchar(); // Wait for Enter key press
-	// 	Quando o cï¿½digo acabar, gerar arquivo txt das atividades organizadas
-
-    printf("\n \n\tAtividades organizadas: \n \n");
+	// 	Quando o c?digo acabar, gerar arquivo txt das atividades organizadas
+	
+	printf("\n \n\tAtividades organizadas: \n \n");
     for (int i = 0; i < numAtividades; i++) {
         printf("Atividade %d:\n \n", i + 1);
         printf("\tNome: %s\n", atividades[i].nome);
@@ -179,11 +179,34 @@ int main() {
         urgenciaDeterminador(atividades[i].data.dia, atividades[i].dificuldade);
         
         if (atividades[i].dificuldade >= 7) {
-            printf("\tClassificaï¿½ï¿½o: Dificil\n\n");
+            printf("\tClassifica??o: Dificil\n\n");
         } else if (atividades[i].dificuldade >= 4) {
-            printf("\tClassificaï¿½ï¿½o: Medio\n\n");
+            printf("\tClassifica??o: Medio\n\n");
         } else {
-            printf("\tClassificaï¿½ï¿½o: Facil\n\n");
+            printf("\tClassifica??o: Facil\n\n");
         }
     }
+
+    FILE *outputFile = fopen("AtividadesOrganizadas.txt", "w"); // Abrir o arquivo em modo de escrita
+
+    fprintf(outputFile, "\n \n\tAtividades organizadas: \n \n");
+    for (int i = 0; i < numAtividades; i++) {
+        fprintf(outputFile, "Atividade %d:\n \n", i + 1);
+        fprintf(outputFile, "\tNome: %s\n", atividades[i].nome);
+        fprintf(outputFile, "\tDias faltando: %d\n", atividades[i].data.dia);
+        fprintf(outputFile, "\tPeso: %d\n", atividades[i].peso);
+        fprintf(outputFile, "\tDificuldade: %d\n \n", atividades[i].dificuldade);
+        fprintf(outputFile, "\n");
+        
+        if (atividades[i].dificuldade >= 7) {
+            fprintf(outputFile, "\tClassificação: Difícil\n\n");
+        } else if (atividades[i].dificuldade >= 4) {
+            fprintf(outputFile, "\tClassificação: Médio\n\n");
+        } else {
+            fprintf(outputFile, "\tClassificação: Fácil\n\n");
+        }
+    }
+    
+    fclose(outputFile); // Fechar o arquivo}
+    
 }
