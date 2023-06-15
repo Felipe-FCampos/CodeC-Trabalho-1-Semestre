@@ -42,7 +42,7 @@ int calculo(int diaEntrega, int mesEntrega, int diaAtual, int mesAtual){
     int array[13]= {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     
     for(int i=mesAtual; i!=mesEntrega+1; i++){
-    	if(i==mesAtual && a!=0){	
+    	if(i==mesAtual && a==0 && i!=mesEntrega){	
 			calculo=calculo+(array[i]-diaAtual);
 		}
 		
@@ -113,12 +113,12 @@ int main() {
 	
 	loadingBar();
 	
-    printf("\n\tDigite o número de atividades: ");
+    printf("\n\tDigite o nÃºmero de atividades: ");
     scanf("%d", &numAtividades);
     
     printf("\tDigite o dia atual: ");
     scanf("%d",&diaAtual);
-    printf("\tDigite o mês atual: ");
+    printf("\tDigite o mÃªs atual: ");
     scanf("%d", &mesAtual);
 
     Atividade atividades[numAtividades];
@@ -132,7 +132,7 @@ int main() {
 		printf("\tDigite o dia de entrega: ");
    		scanf("%d", &diaEntrega);
     
-    	printf("\tDigite um mês: ");
+    	printf("\tDigite um mÃªs: ");
    		scanf("%d", &mesEntrega);
    		
    		// Puxando a fun??o c?lculo
@@ -199,11 +199,11 @@ int main() {
         fprintf(outputFile, "\n");
         
         if (atividades[i].dificuldade >= 7) {
-            fprintf(outputFile, "\tClassificação: Difícil\n\n");
+            fprintf(outputFile, "\tClassificaÃ§Ã£o: DifÃ­cil\n\n");
         } else if (atividades[i].dificuldade >= 4) {
-            fprintf(outputFile, "\tClassificação: Médio\n\n");
+            fprintf(outputFile, "\tClassificaÃ§Ã£o: MÃ©dio\n\n");
         } else {
-            fprintf(outputFile, "\tClassificação: Fácil\n\n");
+            fprintf(outputFile, "\tClassificaÃ§Ã£o: FÃ¡cil\n\n");
         }
     }
     
